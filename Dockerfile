@@ -39,9 +39,18 @@ RUN wget -q -O - "${URL}" | tar xz \
 ARG NETBOX_TOPOLOGY_URL=https://github.com/NoOne-dev/netbox_topology/archive/master.tar.gz
 RUN wget -q -O - "${NETBOX_TOPOLOGY_URL}" | tar xz
 
+
 WORKDIR /opt/netbox_topology-master
-RUN cp -r -v netbox/ "/opt/netbox"
+RUN mv -v netbox/ "/opt/netbox"
 RUN patch -d "/opt/netbox" -b -p0 -N -r- < topology.patch
+
+WORKDIR /opt/netbox/netbox
+ARG COLLECTOR_URL=https://github.com/serge-r/collector/archive/master.tar.gz
+RUN wget -q -O - "${COLLECTOR_URL}" | tar xz
+WORKDIR /opt/netbox/netbox/collector
+RUN patch "/opt/netbox/netbox/settings.py" -b -p0 -N -r- < collector.patch
+RUN patch "/opt/netbox/netbox/urls.py" -b -p0 -N -r- < collector2.patch
+
 
 WORKDIR /opt/netbox
 RUN pip install -r requirements.txt

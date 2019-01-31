@@ -16,7 +16,6 @@ services:
   - docker
 
 install:
-  - docker-compose pull --parallel
   - docker-compose build
 
 script:

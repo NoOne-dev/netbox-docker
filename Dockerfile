@@ -35,6 +35,12 @@ ARG BRANCH=master
 ARG URL=https://github.com/digitalocean/netbox/archive/$BRANCH.tar.gz
 RUN wget -q -O - "${URL}" | tar xz \
   && mv netbox* netbox
+ARG NETBOX_TOPOLOGY_URL=https://github.com/mylivingweb/netbox_topology/archive/master.tar.gz
+RUN wget -q -O - "${NETBOX_TOPOLOGY_URL}" | tar xz
+
+WORKDIR /opt/netbox_topology-master
+RUN cp -r -v netbox/ "/opt/netbox"
+RUN patch -d "/opt/netbox" -b -p0 -N -r- < topology.patch
 
 WORKDIR /opt/netbox
 RUN pip install -r requirements.txt

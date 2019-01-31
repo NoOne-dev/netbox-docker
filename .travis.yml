@@ -26,4 +26,5 @@ after_script:
   - docker-compose down
 
 after_success:
-  - ./build-all.sh
+  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - ./build-all.sh --push

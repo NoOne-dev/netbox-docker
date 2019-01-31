@@ -1,3 +1,11 @@
+coordinates:
+  type: text
+  label: 
+  description: 
+  required: false
+  weight: 100
+  on_objects:
+  - dcim.models.Device
 # text_field:
 #   type: text
 #   label: Custom Text

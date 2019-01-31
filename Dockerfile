@@ -13,7 +13,8 @@ RUN apk add --no-cache \
       openldap-dev \
       postgresql-dev \
       ttf-ubuntu-font-family \
-      wget
+      wget \
+      patch
 
 RUN pip install \
 # gunicorn is used for launching netbox

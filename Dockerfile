@@ -36,7 +36,7 @@ ARG BRANCH=master
 ARG URL=https://github.com/digitalocean/netbox/archive/$BRANCH.tar.gz
 RUN wget -q -O - "${URL}" | tar xz \
   && mv netbox* netbox
-ARG NETBOX_TOPOLOGY_URL=https://github.com/mylivingweb/netbox_topology/archive/master.tar.gz
+ARG NETBOX_TOPOLOGY_URL=https://github.com/NoOne-dev/netbox_topology/archive/master.tar.gz
 RUN wget -q -O - "${NETBOX_TOPOLOGY_URL}" | tar xz
 
 WORKDIR /opt/netbox_topology-master

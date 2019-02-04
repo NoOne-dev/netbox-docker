@@ -46,7 +46,8 @@ RUN patch -d "/opt/netbox" -b -p0 -N -r- < topology.patch
 
 WORKDIR /opt/netbox/netbox
 ARG COLLECTOR_URL=https://github.com/NoOne-dev/collector/archive/master.tar.gz
-RUN wget -q -O - "${COLLECTOR_URL}" | tar xz -C ./collector
+RUN wget -q -O - "${COLLECTOR_URL}" | tar xz \
+  && mv collector* collector
 WORKDIR /opt/netbox/netbox/collector
 RUN patch "/opt/netbox/netbox/settings.py" -b -p0 -N -r- < collector.patch
 RUN patch "/opt/netbox/netbox/urls.py" -b -p0 -N -r- < collector2.patch

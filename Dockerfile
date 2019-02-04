@@ -41,7 +41,7 @@ RUN wget -q -O - "${NETBOX_TOPOLOGY_URL}" | tar xz
 
 
 WORKDIR /opt/netbox_topology-master
-RUN cp -v netbox/ "/opt/netbox"
+RUN cp -r -v netbox/ "/opt/netbox"
 RUN patch -d "/opt/netbox" -b -p0 -N -r- < topology.patch
 
 WORKDIR /opt/netbox/netbox

@@ -18,7 +18,7 @@ services:
 install:
   - docker pull noonedev/netbox:latest
   - docker-compose pull --parallel
-  - docker-compose build --cache-from noonedev/netbox:latest
+  - docker-compose build
 
 script:
   - docker-compose run netbox ./manage.py test

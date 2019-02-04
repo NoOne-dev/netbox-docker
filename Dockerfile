@@ -51,7 +51,7 @@ RUN wget -q -O - "${COLLECTOR_URL}" | tar xz \
 WORKDIR /opt/netbox/netbox/collector
 RUN patch "/opt/netbox/netbox/netbox/settings.py" -b -p0 -N -r- < collector.patch
 RUN patch "/opt/netbox/netbox/netbox/urls.py" -b -p0 -N -r- < collector2.patch
-
+RUN mkdir "/var/log/netbox"
 
 WORKDIR /opt/netbox
 RUN pip install -r requirements.txt
